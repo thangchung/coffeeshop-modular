@@ -1,9 +1,11 @@
 // dotnet tool update --global dotnet-ef --version 7.0.0-preview.5.22302.2
 // dotnet ef migrations add InitCoffeeShopDb -c MainDbContext -o Infrastructure/Data/Migrations
 
-using CoffeeShop;
 using CoffeeShop.Domain;
+using CoffeeShop.Domain.Commands;
 using CoffeeShop.Infrastructure.Data;
+using CoffeeShop.Infrastructure.Hubs;
+using MediatR;
 using N8T.Infrastructure;
 using N8T.Infrastructure.Controller;
 using N8T.Infrastructure.EfCore;
@@ -56,7 +58,9 @@ if (app.Environment.IsDevelopment())
 
 //app.UseAuthorization();
 
-app.MapControllers();
+// app.MapControllers();
+app.MapPost("/v1/api/orders",
+    async (PlaceOrderCommand command, ISender sender) => await sender.Send(command));
 
 app.MapHub<NotificationHub>("/message");
 

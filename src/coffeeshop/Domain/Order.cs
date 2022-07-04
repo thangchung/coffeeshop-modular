@@ -12,7 +12,6 @@ public class Order : EntityRootBase
     public OrderStatus OrderStatus { get; set; }
     public Location Location { get; set; }
     public List<LineItem> LineItems { get; set; } = new();
-    //public List<LineItem> KitchenLineItems { get; set; } = new();
 
     public static OrderEventResult From(PlaceOrderCommand placeOrderCommand)
     {
@@ -20,6 +19,7 @@ public class Order : EntityRootBase
         {
             OrderSource = placeOrderCommand.OrderSource,
             Location = placeOrderCommand.Location,
+            LoyaltyMemberId = placeOrderCommand.LoyaltyMemberId,
             OrderStatus = OrderStatus.IN_PROGRESS
         };
 
@@ -28,9 +28,10 @@ public class Order : EntityRootBase
         {
             foreach (var baritaItem in placeOrderCommand.BaristaItems)
             {
-                var lineItem = new LineItem(baritaItem.ItemType, baritaItem.Name, baritaItem.Price, ItemStatus.IN_PROGRESS, order, true);
-                orderEventResult.BaristaTickets.Add(new OrderIn(order.Id, lineItem.Id, lineItem.Name, lineItem.ItemType));
-                orderEventResult.OrderUpdates.Add(new OrderUpdate(order.Id, lineItem.Id, lineItem.Name, lineItem.ItemType, OrderStatus.IN_PROGRESS));
+                var item = Item.GetItem(baritaItem.ItemType);
+                var lineItem = new LineItem(baritaItem.ItemType, item.Type.ToString(), item.Price, ItemStatus.IN_PROGRESS, order, true);
+                orderEventResult.BaristaTickets.Add(new BaristaOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
+                orderEventResult.OrderUpdates.Add(new OrderUpdate(order.Id, lineItem.Id, lineItem.ItemType, OrderStatus.IN_PROGRESS));
                 order.LineItems.Add(lineItem);
             }
         }
@@ -39,9 +40,10 @@ public class Order : EntityRootBase
         {
             foreach(var kitchenItem in placeOrderCommand.KitchenItems)
             {
-                var lineItem = new LineItem(kitchenItem.ItemType, kitchenItem.Name, kitchenItem.Price, ItemStatus.IN_PROGRESS, order, false);
-                orderEventResult.KitchenTickets.Add(new OrderIn(order.Id, lineItem.Id, lineItem.Name, lineItem.ItemType));
-                orderEventResult.OrderUpdates.Add(new OrderUpdate(order.Id, lineItem.Id, lineItem.Name, lineItem.ItemType, OrderStatus.IN_PROGRESS));
+                var item = Item.GetItem(kitchenItem.ItemType);
+                var lineItem = new LineItem(kitchenItem.ItemType, item.Type.ToString(), item.Price, ItemStatus.IN_PROGRESS, order, false);
+                orderEventResult.KitchenTickets.Add(new KitchenOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
+                orderEventResult.OrderUpdates.Add(new OrderUpdate(order.Id, lineItem.Id, lineItem.ItemType, OrderStatus.IN_PROGRESS));
                 order.LineItems.Add(lineItem);
             }
         }
@@ -53,7 +55,7 @@ public class Order : EntityRootBase
     public OrderEventResult Apply(OrderUp orderUp)
     {
         var orderEventResult = new OrderEventResult();
-        orderEventResult.OrderUpdates.Add(new OrderUpdate(Id, orderUp.ItemLineId, orderUp.Name, orderUp.ItemType, OrderStatus.FULFILLED, orderUp.MadeBy));
+        orderEventResult.OrderUpdates.Add(new OrderUpdate(Id, orderUp.ItemLineId, orderUp.ItemType, OrderStatus.FULFILLED, orderUp.MadeBy));
         
         if (LineItems.Any())
         {
@@ -61,7 +63,7 @@ public class Order : EntityRootBase
             if(item is not null)
             {
                 item.ItemStatus = ItemStatus.FULFILLED;
-                orderEventResult.OrderUpdates.Add(new OrderUpdate(Id, item.Id, item.Name, item.ItemType, OrderStatus.FULFILLED, orderUp.MadeBy));
+                orderEventResult.OrderUpdates.Add(new OrderUpdate(Id, item.Id, item.ItemType, OrderStatus.FULFILLED, orderUp.MadeBy));
             }
         }
 

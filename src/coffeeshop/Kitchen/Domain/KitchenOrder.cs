@@ -9,4 +9,19 @@ public class KitchenOrder : EntityRootBase
     public ItemType ItemType { get; set; }
     public DateTime TimeIn { get; set; }
     public DateTime TimeUp { get; set; }
+
+    public KitchenOrder(Guid orderId, ItemType itemType, DateTime timeIn)
+    {
+        OrderId = orderId;
+        ItemType = itemType;
+        TimeIn = timeIn;
+    }
+
+    public KitchenOrder(Guid orderId, ItemType itemType, DateTime timeIn, DateTime timeUp)
+    {
+        OrderId = orderId;
+        ItemType = itemType;
+        TimeIn = timeIn;
+        TimeUp = timeUp;
+    }
 }
