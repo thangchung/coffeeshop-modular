@@ -1,55 +1,27 @@
 ﻿using CoffeeShop.Domain;
 using CoffeeShop.Domain.Commands;
-using CoffeeShop.Infrastructure.Hubs;
 using MediatR;
-using Microsoft.AspNetCore.SignalR;
 using N8T.Core.Repository;
 
 namespace CoffeeShop.Counter.UseCases;
 
-public class OrderInUseCase : IRequestHandler<PlaceOrderCommand, IResult>
+public class OrderInUseCase : N8T.Infrastructure.Events.RequestHandler<PlaceOrderCommand, IResult>
 {
     private readonly IRepository<Order> _orderRepository;
-    private readonly IHubContext<NotificationHub, INotificationClient> _hubContext;
-    private readonly IPublisher _publisher;
 
-    public OrderInUseCase(IRepository<Order> orderRepository, IHubContext<NotificationHub, INotificationClient> hubContext, IPublisher publisher)
+    public OrderInUseCase(IRepository<Order> orderRepository, IPublisher publisher) : base(publisher)
     {
-        _orderRepository = orderRepository ?? throw new ArgumentNullException();
-        _hubContext = hubContext ?? throw new ArgumentNullException();
-        _publisher = publisher ?? throw new ArgumentNullException();
+        _orderRepository = orderRepository;
     }
-    
-    public async Task<IResult> Handle(PlaceOrderCommand placeOrderCommand, CancellationToken cancellationToken)
+
+    public override async Task<IResult> Handle(PlaceOrderCommand placeOrderCommand, CancellationToken cancellationToken)
     {
-        if (placeOrderCommand is null)
-        {
-            throw new ArgumentNullException(nameof(placeOrderCommand));
-        }
+        ArgumentNullException.ThrowIfNull(placeOrderCommand);
 
-        var orderEventResult = Order.From(placeOrderCommand);
-        await _orderRepository.AddAsync(orderEventResult.Order);
+        var order = Order.From(placeOrderCommand);
+        await _orderRepository.AddAsync(order, cancellationToken: cancellationToken);
 
-        foreach (var orderUpdate in orderEventResult.OrderUpdates)
-        {
-            await _hubContext.Clients.All.SendMessage($"{orderUpdate.OrderId}-{orderUpdate.ItemLineId}-{Item.GetItem(orderUpdate.ItemType)?.ToString()}-{orderUpdate.OrderStatus}");
-        }
-
-        if (orderEventResult.BaristaTickets.Any())
-        {
-            foreach (var ticket in orderEventResult.BaristaTickets)
-            {
-                await _publisher.Publish(ticket);
-            }
-        }
-
-        if (orderEventResult.KitchenTickets.Any())
-        {
-            foreach (var ticket in orderEventResult.KitchenTickets)
-            {
-                await _publisher.Publish(ticket);
-            }
-        }
+        await RelayAndPublishEvents(order, cancellationToken);
 
         return Results.Ok();
     }

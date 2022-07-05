@@ -12,7 +12,7 @@ namespace N8T.Infrastructure.EfCore
         {
         }
 
-        public IEnumerable<EventBase> GetDomainEvents()
+        public IEnumerable<IDomainEvent> GetDomainEvents()
         {
             var domainEntities = ChangeTracker
                 .Entries<EntityRootBase>()

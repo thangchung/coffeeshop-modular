@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using N8T.Infrastructure.Bus.Dapr;
 using N8T.Infrastructure.Bus.Dapr.Internal;
 using N8T.Infrastructure.Bus.Kafka;
-using N8T.Infrastructure.SchemaRegistry;
 
 namespace N8T.Infrastructure.Bus
 {

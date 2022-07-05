@@ -13,18 +13,18 @@ namespace N8T.Core.Domain
 
     public interface IAggregateRoot : IEntity
     {
-        public HashSet<EventBase> DomainEvents { get; }
+        public HashSet<IDomainEvent> DomainEvents { get; }
     }
 
     public interface ITxRequest { }
 
     public abstract class EntityRootBase : EntityBase, IAggregateRoot
     {
-        public HashSet<EventBase> DomainEvents { get; private set; }
+        public HashSet<IDomainEvent> DomainEvents { get; private set; }
 
-        public void AddDomainEvent(EventBase eventItem)
+        public void AddDomainEvent(IDomainEvent eventItem)
         {
-            DomainEvents ??= new HashSet<EventBase>();
+            DomainEvents ??= new HashSet<IDomainEvent>();
             DomainEvents.Add(eventItem);
         }
 

@@ -20,7 +20,8 @@ namespace N8T.Infrastructure.EfCore
     {
         public static IServiceCollection AddPostgresDbContext<TDbContext>(this IServiceCollection services,
             string connString, Action<DbContextOptionsBuilder> doMoreDbContextOptionsConfigure = null,
-            Action<IServiceCollection> doMoreActions = null)
+            Action<IServiceCollection> doMoreActions = null,
+            ServiceLifetime serviceLifetime = ServiceLifetime.Scoped)
                 where TDbContext : DbContext, IDbFacadeResolver, IDomainEventContext
         {
             services.AddDbContext<TDbContext>(options =>
@@ -32,7 +33,7 @@ namespace N8T.Infrastructure.EfCore
                 }).UseSnakeCaseNamingConvention();
 
                 doMoreDbContextOptionsConfigure?.Invoke(options);
-            });
+            }, serviceLifetime);
 
             services.AddScoped<IDbFacadeResolver>(provider => provider.GetService<TDbContext>());
             services.AddScoped<IDomainEventContext>(provider => provider.GetService<TDbContext>());

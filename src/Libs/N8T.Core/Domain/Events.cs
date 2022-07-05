@@ -12,7 +12,7 @@ namespace N8T.Core.Domain
 
     public interface IDomainEventContext
     {
-        IEnumerable<EventBase> GetDomainEvents();
+        IEnumerable<IDomainEvent> GetDomainEvents();
     }
 
     public abstract class EventBase : IDomainEvent
@@ -32,10 +32,5 @@ namespace N8T.Core.Domain
         }
 
         public IDomainEvent Event { get; }
-    }
-
-    public class DaprPubSubNameAttribute : Attribute
-    {
-        public string PubSubName { get; set; } = "pubsub";
     }
 }

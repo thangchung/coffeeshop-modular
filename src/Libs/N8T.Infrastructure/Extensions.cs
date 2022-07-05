@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using N8T.Core.Domain;
 using N8T.Infrastructure.Logging;
 using N8T.Infrastructure.Validator;
 using Newtonsoft.Json;
@@ -19,6 +18,7 @@ using Serilog;
 
 namespace N8T.Infrastructure
 {
+
     public static class Extensions
     {
         [DebuggerStepThrough]

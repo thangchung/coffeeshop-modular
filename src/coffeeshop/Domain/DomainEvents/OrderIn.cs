@@ -1,9 +1,8 @@
-﻿using MediatR;
-using N8T.Core.Domain;
+﻿using N8T.Core.Domain;
 
-namespace CoffeeShop.Domain.ValueObjects;
+namespace CoffeeShop.Domain.DomainEvents;
 
-public class OrderIn : ValueObject, INotification
+public class OrderIn : EventBase
 {
     public Guid OrderId { get; set; }
     public Guid ItemLineId { get; set; }
@@ -18,9 +17,9 @@ public class OrderIn : ValueObject, INotification
         TimeIn = DateTime.UtcNow;
     }
 
-    protected override IEnumerable<object> GetEqualityComponents()
+    public override void Flatten()
     {
-        return new object[] { OrderId, ItemLineId, ItemType, TimeIn };
+        throw new NotImplementedException();
     }
 }
 

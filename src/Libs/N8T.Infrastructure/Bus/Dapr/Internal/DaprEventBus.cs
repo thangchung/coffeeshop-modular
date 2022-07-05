@@ -24,15 +24,7 @@ namespace N8T.Infrastructure.Bus.Dapr.Internal
         public async Task PublishAsync<TEvent>(TEvent @event, string[] topics = default,
             CancellationToken token = default) where TEvent : IDomainEvent
         {
-            var attr = (DaprPubSubNameAttribute)Attribute.GetCustomAttribute(typeof(TEvent),
-                typeof(DaprPubSubNameAttribute));
-
             var pubsubName = _options.Value.PubSubName ?? "pubsub";
-
-            if (attr is not null)
-            {
-                pubsubName = attr.PubSubName;
-            }
 
             if (topics is null)
             {
@@ -54,7 +46,7 @@ namespace N8T.Infrastructure.Bus.Dapr.Internal
 
         public Task SubscribeAsync<TMessage>(string[] topics = default, CancellationToken token = default) where TMessage : IDomainEvent
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

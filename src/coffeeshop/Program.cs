@@ -58,7 +58,6 @@ if (app.Environment.IsDevelopment())
 
 //app.UseAuthorization();
 
-// app.MapControllers();
 app.MapPost("/v1/api/orders",
     async (PlaceOrderCommand command, ISender sender) => await sender.Send(command));
 

@@ -19,15 +19,15 @@ namespace N8T.Infrastructure.EfCore
     {
         private readonly IDomainEventContext _domainEventContext;
         private readonly IDbFacadeResolver _dbFacadeResolver;
-        private readonly IMediator _mediator;
+        private readonly IPublisher _publisher;
         private readonly ILogger<TxBehavior<TRequest, TResponse>> _logger;
 
         public TxBehavior(IDbFacadeResolver dbFacadeResolver, IDomainEventContext domainEventContext,
-            IMediator mediator, ILogger<TxBehavior<TRequest, TResponse>> logger)
+            IPublisher publisher, ILogger<TxBehavior<TRequest, TResponse>> logger)
         {
             _domainEventContext = domainEventContext ?? throw new ArgumentNullException(nameof(domainEventContext));
             _dbFacadeResolver = dbFacadeResolver ?? throw new ArgumentNullException(nameof(dbFacadeResolver));
-            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
@@ -58,7 +58,7 @@ namespace N8T.Infrastructure.EfCore
                 var tasks = domainEvents
                     .Select(async @event =>
                     {
-                        await _mediator.Publish(new EventWrapper(@event), cancellationToken);
+                        await _publisher.Publish(new EventWrapper(@event), cancellationToken);
                         _logger.LogDebug(
                             "{Prefix} Published domain event {DomainEventName} with payload {DomainEventContent}", nameof(TxBehavior<TRequest, TResponse>), @event.GetType().FullName, JsonSerializer.Serialize(@event));
                     });

@@ -1,33 +1,34 @@
 ﻿using CoffeeShop.Domain;
-using CoffeeShop.Domain.ValueObjects;
+using CoffeeShop.Domain.DomainEvents;
 using CoffeeShop.Kitchen.Domain;
 using MediatR;
 using N8T.Core.Repository;
 
 namespace CoffeeShop.Kitchen.UseCases;
 
-public class OrderInUseCase : INotificationHandler<KitchenOrderIn>
+public class OrderInUseCase : N8T.Infrastructure.Events.DomainEventHandler<KitchenOrderIn>
 {
     private readonly IRepository<KitchenOrder> _kitchenOrderRepository;
-    private readonly IPublisher _publisher;
-
-    public OrderInUseCase(IRepository<KitchenOrder> kitchenOrderRepository, IPublisher publisher)
+    
+    public OrderInUseCase(IRepository<KitchenOrder> kitchenOrderRepository, IPublisher publisher) 
+        : base(publisher)
     {
         _kitchenOrderRepository = kitchenOrderRepository;
-        _publisher = publisher;
     }
     
-    public async Task Handle(KitchenOrderIn orderIn, CancellationToken cancellationToken)
+    public override async Task HandleEvent(KitchenOrderIn @event, CancellationToken cancellationToken)
     {
-        var kitchenOrder = new KitchenOrder(orderIn.OrderId, orderIn.ItemType, DateTime.UtcNow);
-        await Task.Delay(CalculateDelay(orderIn.ItemType), cancellationToken);
+        ArgumentNullException.ThrowIfNull(@event);
+
+        var kitchenOrder = KitchenOrder.From(@event.OrderId, @event.ItemType, DateTime.UtcNow);
         
-        var orderUp = new OrderUp(orderIn.OrderId, orderIn.ItemLineId, Item.GetItem(orderIn.ItemType)?.ToString()!, orderIn.ItemType, DateTime.UtcNow, "teesee");
-        kitchenOrder.TimeUp = DateTime.UtcNow;
+        await Task.Delay(CalculateDelay(@event.ItemType), cancellationToken);
+        
+        kitchenOrder.SetTimeUp(@event.ItemLineId, DateTime.UtcNow);
+        
+        await _kitchenOrderRepository.AddAsync(kitchenOrder, cancellationToken: cancellationToken);
 
-        await _kitchenOrderRepository.AddAsync(kitchenOrder);
-
-        await _publisher.Publish(orderUp);
+        await RelayAndPublishEvents(kitchenOrder, cancellationToken);
     }
 
     private static TimeSpan CalculateDelay(ItemType itemType)

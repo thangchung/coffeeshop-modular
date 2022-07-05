@@ -30,7 +30,7 @@ namespace CoffeeShop.Infrastructure.Data.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
                     item_type = table.Column<int>(type: "integer", nullable: false),
-                    time_in = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    item_name = table.Column<string>(type: "text", nullable: false),
                     time_up = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
                     updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
@@ -48,7 +48,7 @@ namespace CoffeeShop.Infrastructure.Data.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
                     order_id = table.Column<Guid>(type: "uuid", nullable: false),
                     item_type = table.Column<int>(type: "integer", nullable: false),
-                    time_in = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    item_name = table.Column<string>(type: "text", nullable: false),
                     time_up = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
                     updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)

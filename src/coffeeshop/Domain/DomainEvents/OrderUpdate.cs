@@ -1,15 +1,14 @@
-﻿using MediatR;
-using N8T.Core.Domain;
+﻿using N8T.Core.Domain;
 
-namespace CoffeeShop.Domain.ValueObjects;
+namespace CoffeeShop.Domain.DomainEvents;
 
-public class OrderUpdate : ValueObject, INotification
+public class OrderUpdate : EventBase
 {
-    public Guid OrderId { get; set; }
-    public Guid ItemLineId { get; set; }
-    public ItemType ItemType { get; set; }
-    public OrderStatus OrderStatus { get; set; }
-    public string? MadeBy { get; set; }
+    public Guid OrderId { get; }
+    public Guid ItemLineId { get; }
+    public ItemType ItemType { get; }
+    public OrderStatus OrderStatus { get; }
+    public string? MadeBy { get; }
 
     public OrderUpdate(Guid orderId, Guid itemLineId, ItemType itemType, OrderStatus orderStatus)
     {
@@ -29,8 +28,8 @@ public class OrderUpdate : ValueObject, INotification
         MadeBy = madeBy;
     }
 
-    protected override IEnumerable<object> GetEqualityComponents()
+    public override void Flatten()
     {
-        return new object[] { OrderId, ItemLineId, ItemType, OrderStatus };
+        throw new NotImplementedException();
     }
 }

@@ -1,38 +1,34 @@
 ﻿using CoffeeShop.Barista.Domain;
 using CoffeeShop.Domain;
-using CoffeeShop.Domain.ValueObjects;
+using CoffeeShop.Domain.DomainEvents;
 using MediatR;
 using N8T.Core.Repository;
 
 namespace CoffeeShop.Barista.UseCases;
 
-public class OrderInUseCase : INotificationHandler<BaristaOrderIn>
+public class OrderInUseCase : N8T.Infrastructure.Events.DomainEventHandler<BaristaOrderIn>
 {
     private readonly IRepository<BaristaItem> _baristaItemRepository;
-    private readonly IPublisher _publisher;
 
     public OrderInUseCase(IRepository<BaristaItem> baristaItemRepository, IPublisher publisher)
+        : base(publisher)
     {
         _baristaItemRepository = baristaItemRepository;
-        _publisher = publisher;
     }
-    
-    public async Task Handle(BaristaOrderIn orderIn, CancellationToken cancellationToken)
+
+    public override async Task HandleEvent(BaristaOrderIn @event, CancellationToken cancellationToken)
     {
-        var baristaItem = new BaristaItem
-        {
-            ItemType = orderIn.ItemType,
-            TimeIn = DateTime.UtcNow
-        };
+        ArgumentNullException.ThrowIfNull(@event);
 
-        await Task.Delay(CalculateDelay(orderIn.ItemType), cancellationToken);
+        var baristaItem = BaristaItem.From(@event.ItemType, DateTime.UtcNow);
 
-        var orderUp = new OrderUp(orderIn.OrderId, orderIn.ItemLineId, Item.GetItem(orderIn.ItemType)?.ToString()!, orderIn.ItemType, DateTime.UtcNow, "teesee");
-        baristaItem.TimeUp = DateTime.UtcNow;
+        await Task.Delay(CalculateDelay(@event.ItemType), cancellationToken);
 
-        await _baristaItemRepository.AddAsync(baristaItem);
+        baristaItem.SetTimeUp(@event.OrderId, @event.ItemLineId, DateTime.UtcNow);
 
-        await _publisher.Publish(orderUp);
+        await _baristaItemRepository.AddAsync(baristaItem, cancellationToken: cancellationToken);
+
+        await RelayAndPublishEvents(baristaItem, cancellationToken);
     }
 
     private static TimeSpan CalculateDelay(ItemType itemType)

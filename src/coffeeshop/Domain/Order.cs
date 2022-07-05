@@ -1,6 +1,5 @@
-﻿using CoffeeShop.Counter.Domain;
-using CoffeeShop.Domain.Commands;
-using CoffeeShop.Domain.ValueObjects;
+﻿using CoffeeShop.Domain.Commands;
+using CoffeeShop.Domain.DomainEvents;
 using N8T.Core.Domain;
 
 namespace CoffeeShop.Domain;
@@ -13,7 +12,7 @@ public class Order : EntityRootBase
     public Location Location { get; set; }
     public List<LineItem> LineItems { get; set; } = new();
 
-    public static OrderEventResult From(PlaceOrderCommand placeOrderCommand)
+    public static Order From(PlaceOrderCommand placeOrderCommand)
     {
         var order = new Order
         {
@@ -23,47 +22,48 @@ public class Order : EntityRootBase
             OrderStatus = OrderStatus.IN_PROGRESS
         };
 
-        var orderEventResult = new OrderEventResult();
         if (placeOrderCommand.BaristaItems.Any())
         {
             foreach (var baritaItem in placeOrderCommand.BaristaItems)
             {
                 var item = Item.GetItem(baritaItem.ItemType);
                 var lineItem = new LineItem(baritaItem.ItemType, item.Type.ToString(), item.Price, ItemStatus.IN_PROGRESS, order, true);
-                orderEventResult.BaristaTickets.Add(new BaristaOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
-                orderEventResult.OrderUpdates.Add(new OrderUpdate(order.Id, lineItem.Id, lineItem.ItemType, OrderStatus.IN_PROGRESS));
+
+                order.AddDomainEvent(new BaristaOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
+                order.AddDomainEvent(new OrderUpdate(order.Id, lineItem.Id, lineItem.ItemType, OrderStatus.IN_PROGRESS));
+
                 order.LineItems.Add(lineItem);
             }
         }
-        
+
         if (placeOrderCommand.KitchenItems.Any())
         {
-            foreach(var kitchenItem in placeOrderCommand.KitchenItems)
+            foreach (var kitchenItem in placeOrderCommand.KitchenItems)
             {
                 var item = Item.GetItem(kitchenItem.ItemType);
                 var lineItem = new LineItem(kitchenItem.ItemType, item.Type.ToString(), item.Price, ItemStatus.IN_PROGRESS, order, false);
-                orderEventResult.KitchenTickets.Add(new KitchenOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
-                orderEventResult.OrderUpdates.Add(new OrderUpdate(order.Id, lineItem.Id, lineItem.ItemType, OrderStatus.IN_PROGRESS));
+
+                order.AddDomainEvent(new KitchenOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
+                order.AddDomainEvent(new OrderUpdate(order.Id, lineItem.Id, lineItem.ItemType, OrderStatus.IN_PROGRESS));
+
                 order.LineItems.Add(lineItem);
             }
         }
 
-        orderEventResult.Order = order;
-        return orderEventResult;
+        return order;
     }
 
-    public OrderEventResult Apply(OrderUp orderUp)
+    public Order Apply(OrderUp orderUp)
     {
-        var orderEventResult = new OrderEventResult();
-        orderEventResult.OrderUpdates.Add(new OrderUpdate(Id, orderUp.ItemLineId, orderUp.ItemType, OrderStatus.FULFILLED, orderUp.MadeBy));
-        
+        AddDomainEvent(new OrderUpdate(Id, orderUp.ItemLineId, orderUp.ItemType, OrderStatus.FULFILLED, orderUp.MadeBy));
+
         if (LineItems.Any())
         {
             var item = LineItems.FirstOrDefault(i => i.Id == orderUp.ItemLineId);
-            if(item is not null)
+            if (item is not null)
             {
                 item.ItemStatus = ItemStatus.FULFILLED;
-                orderEventResult.OrderUpdates.Add(new OrderUpdate(Id, item.Id, item.ItemType, OrderStatus.FULFILLED, orderUp.MadeBy));
+                AddDomainEvent(new OrderUpdate(Id, item.Id, item.ItemType, OrderStatus.FULFILLED, orderUp.MadeBy));
             }
         }
 
@@ -76,7 +76,6 @@ public class Order : EntityRootBase
             }
         }
 
-        orderEventResult.Order = this;
-        return orderEventResult;
+        return this;
     }
 }

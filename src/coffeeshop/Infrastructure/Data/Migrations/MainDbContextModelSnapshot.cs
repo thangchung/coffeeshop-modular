@@ -37,13 +37,14 @@ namespace CoffeeShop.Infrastructure.Data.Migrations
                         .HasColumnName("created")
                         .HasDefaultValueSql("now()");
 
+                    b.Property<string>("ItemName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("item_name");
+
                     b.Property<int>("ItemType")
                         .HasColumnType("integer")
                         .HasColumnName("item_type");
-
-                    b.Property<DateTime>("TimeIn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("time_in");
 
                     b.Property<DateTime>("TimeUp")
                         .HasColumnType("timestamp with time zone")
@@ -177,6 +178,11 @@ namespace CoffeeShop.Infrastructure.Data.Migrations
                         .HasColumnName("created")
                         .HasDefaultValueSql("now()");
 
+                    b.Property<string>("ItemName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("item_name");
+
                     b.Property<int>("ItemType")
                         .HasColumnType("integer")
                         .HasColumnName("item_type");
@@ -184,10 +190,6 @@ namespace CoffeeShop.Infrastructure.Data.Migrations
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uuid")
                         .HasColumnName("order_id");
-
-                    b.Property<DateTime>("TimeIn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("time_in");
 
                     b.Property<DateTime>("TimeUp")
                         .HasColumnType("timestamp with time zone")

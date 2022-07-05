@@ -32,6 +32,9 @@ public class MainDbContext : AppDbContextBase
         modelBuilder.Entity<BaristaItem>().HasIndex(x => x.Id).IsUnique();
         modelBuilder.Entity<BaristaItem>().Ignore(x => x.DomainEvents);
 
+        modelBuilder.Entity<BaristaItem>().Property(x => x.ItemType).IsRequired();
+        modelBuilder.Entity<BaristaItem>().Property(x => x.ItemName).IsRequired();
+
         // Orders
         modelBuilder.Entity<Order>().ToTable("orders", "order");
         modelBuilder.Entity<Order>().HasKey(x => x.Id);
@@ -66,21 +69,16 @@ public class MainDbContext : AppDbContextBase
         modelBuilder.Entity<KitchenOrder>().HasIndex(x => x.Id).IsUnique();
         modelBuilder.Entity<KitchenOrder>().Ignore(x => x.DomainEvents);
 
+        modelBuilder.Entity<KitchenOrder>().Property(x => x.ItemType).IsRequired();
+        modelBuilder.Entity<KitchenOrder>().Property(x => x.ItemName).IsRequired();
+
         // relationships
         modelBuilder.Entity<Order>()
             .HasMany(x => x.LineItems);
-
-        //modelBuilder.Entity<Order>()
-        //    .HasMany(x => x.KitchenLineItems);
 
         modelBuilder.Entity<LineItem>()
             .HasOne(x => x.Order)
             .WithMany(x => x.LineItems)
             .HasForeignKey(x => x.OrderId);
-
-        //modelBuilder.Entity<LineItem>()
-        //    .HasOne(x => x.Order)
-        //    .WithMany(x => x.BaristaLineItems)
-        //    .HasForeignKey(x => x.OrderId);
     }
 }
