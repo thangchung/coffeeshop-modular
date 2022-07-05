@@ -6,21 +6,28 @@ namespace CoffeeShop.Domain;
 
 public class Order : EntityRootBase
 {
-    public OrderSource OrderSource { get; set; }
-    public Guid LoyaltyMemberId { get; set; }
-    public OrderStatus OrderStatus { get; set; }
-    public Location Location { get; set; }
-    public List<LineItem> LineItems { get; set; } = new();
+    public OrderSource OrderSource { get; }
+    public Guid LoyaltyMemberId { get; }
+    public OrderStatus OrderStatus { get; private set; }
+    public Location Location { get; }
+    public List<LineItem> LineItems { get; } = new();
+
+    private Order() 
+    {
+        // for MediatR binding    
+    }
+
+    private Order(OrderSource orderSource, Guid loyaltyMemberId, OrderStatus orderStatus, Location location)
+    {
+        OrderSource = orderSource;
+        LoyaltyMemberId = loyaltyMemberId;
+        OrderStatus = orderStatus;
+        Location = location;
+    }
 
     public static Order From(PlaceOrderCommand placeOrderCommand)
     {
-        var order = new Order
-        {
-            OrderSource = placeOrderCommand.OrderSource,
-            Location = placeOrderCommand.Location,
-            LoyaltyMemberId = placeOrderCommand.LoyaltyMemberId,
-            OrderStatus = OrderStatus.IN_PROGRESS
-        };
+        var order = new Order(placeOrderCommand.OrderSource, placeOrderCommand.LoyaltyMemberId, OrderStatus.IN_PROGRESS, placeOrderCommand.Location);
 
         if (placeOrderCommand.BaristaItems.Any())
         {

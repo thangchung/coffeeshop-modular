@@ -1,6 +1,5 @@
 # coffeeshop-modular
-The coffeeshop application with modular approach is built with .NET 
 
-> Don't use this repository for production code
->
-> This is just for demo the conflict connection exception 
+.NET coffee shop application with modular approach
+
+> This project mainly based on https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-majestic-monolith, and customized some parts to adapt with .NET 7

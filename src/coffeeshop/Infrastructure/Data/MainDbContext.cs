@@ -47,6 +47,10 @@ public class MainDbContext : AppDbContextBase
         modelBuilder.Entity<Order>().HasIndex(x => x.Id).IsUnique();
         modelBuilder.Entity<Order>().Ignore(x => x.DomainEvents);
 
+        modelBuilder.Entity<Order>().Property(x => x.OrderSource).IsRequired();
+        modelBuilder.Entity<Order>().Property(x => x.OrderStatus).IsRequired();
+        modelBuilder.Entity<Order>().Property(x => x.Location).IsRequired();
+
         modelBuilder.Entity<LineItem>().ToTable("line_items", "order");
         modelBuilder.Entity<LineItem>().HasKey(x => x.Id);
         modelBuilder.Entity<LineItem>().Property(x => x.Id).HasColumnType("uuid")
