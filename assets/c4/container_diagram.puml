@@ -1,0 +1,29 @@
+@startuml coffeeshop_container
+
+' left to right direction
+' skinparam packageStyle rect
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+' uncomment the following line and comment the first to use locally
+' !include C4_Container.puml
+
+LAYOUT_TOP_DOWN()
+SHOW_PERSON_OUTLINE()
+' LAYOUT_AS_SKETCH()
+' LAYOUT_WITH_LEGEND()
+
+title Container Diagram for Coffee Shop
+
+Person(normal_user, "Normal User", "A user buys coffee and foods")
+
+Boundary(c1, "Coffee Shop Application") {
+    Container(coffeeshop_app, "The coffee shop application", "This application serves the coffee, drinks and foods and uses by counter, barista and kitchen modules.")
+
+    ContainerDb(postgres_db, "Postgres Db", "The database to store the coffee shop data in multiple schemas and tables.")
+}
+
+Rel(normal_user, coffeeshop_app, "Uses", "REST/JSON")
+
+Rel(coffeeshop_app, postgres_db, "Uses", "TCP")
+
+@enduml
