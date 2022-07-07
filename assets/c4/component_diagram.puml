@@ -21,42 +21,49 @@ Person(normal_user, "Normal User", "A user buys coffee and foods")
 Container(coffeeshop_app, "The coffee shop application", "This application serves the coffee, drinks and foods and uses by counter, barista and kitchen modules.")
 ContainerDb(postgres_db, "Postgres Db", "The database to store the coffee shop data in multiple schemas and tables.")
 
-Container_Boundary(coffeeshop_app, "Coffee Shop Application") {
-    Component(app_router, ".NET Route Handler", "/v1/api/orders", "this is an entry point into the application")
+Container_Boundary(coffeeshop_app, "Coffee Shop Application - .NET 7 - Minimal API") {
+    Component(app_router, "/v1/api/orders", "Routing", "this is an entry point into the application")
     
-    Component(sender, "MediatR - Sender", "", "")
-    Component(publisher, "MediatR - Publisher", "", "")
+    Component(sender, "Sender", "C#, MediatR - Sender", "")
+    Component(publisher, "Publisher", "C#, MediatR - Publisher", "")
      
-    Component(OrderInUseCase, "OrderInUseCase", "PlaceOrderCommand request handler", "")
-
-    Component(Order, "Order", "Root Aggregate", "")
-    Component(LineItem, "LineItem", "Entity", "")
-    Component(OrderRepository, "OrderRepository", "Order has repository", "")
-
-    Component(OrderUpdateUseCase, "OrderUpdateUseCase", "Usecase for processing notification using SignalR", "")
-    Component(BaristaOrderInUseCase, "BaristaOrderInUseCase", "Usecase for processing drinks and coffee by barista", "")
-    Component(KitchenOrderInUseCase, "KitchenOrderInUseCase", "Usecase for processing foods by kitchen", "")
-
-    Rel(app_router, sender, "Send PlaceOrderCommand", "DTO object")
-    Rel_U(OrderInUseCase, sender, "Subscribe PlaceOrderCommand", "DTO object", $tags = "async")
-    Rel(OrderInUseCase, Order, "1. Instance new order object", "call to From method")
-    Rel(OrderInUseCase, OrderRepository, "2. Use order repository", "")
-    Rel_R(OrderInUseCase, publisher, "3. Replay domain events in Order and Publish to", "BaristaOrderIn, KitchenOrderIn, and OrderUpdate events")
-    Rel(OrderRepository, Order, "Load DbSet<Order>", "")
-
-    Rel(Order, LineItem, "has many", "")
+    Component(OrderInUseCase, "OrderInUseCase", "C#", "Handle PlaceOrderCommand request")
+    Component(OrderUpUseCase, "OrderUpUseCase", "C#", "Handle OrderUp event")
+    Component(OrderUpdateUseCase, "OrderUpdateUseCase", "C#", "Handle OrderUpdate event")
+    Component(KitchenOrderInUseCase, "KitchenOrderInUseCase", "C#", "Handle KitchenOrderIn event")
+    Component(BaristaOrderInUseCase, "BaristaOrderInUseCase", "C#", "Handle BaristaOrderIn event")
+    
+    Component(NotificationHub, "NotificationHub", "C#, SignalR Notification Hub")
 
     Rel(normal_user, app_router, "Uses", "REST/JSON")
+    Rel(app_router, sender, "Send PlaceOrderCommand", "MediatR - Sender")
+    
+    Rel_U(OrderInUseCase, sender, "[1] Subscribe to PlaceOrderCommand", "MediatR", $tags = "async")
+    Rel(OrderInUseCase, postgres_db, "[2] Add a new order into database", "EF Core")
+    Rel(OrderInUseCase, publisher, "[3] Publish BaristaOrderIn, KitchenOrderIn, and OrderUpdate events to", "MediatR - Publisher")
+    
+    Rel(BaristaOrderInUseCase, publisher, "[1] Subscribe to BaristaOrderIn", "MediatR", $tags = "async")
+    Rel(BaristaOrderInUseCase, postgres_db, "[2] Add a new barista order into database", "EF Core")
+    Rel(BaristaOrderInUseCase, publisher, "[3] Publish OrderUp event to", "MediatR - Publisher")
 
-    Rel(OrderRepository, postgres_db, "Add new order into database", "TCP")
+    Rel(KitchenOrderInUseCase, publisher, "[1] Subscribe to KitchenOrderIn", "MediatR", $tags = "async")
+    Rel(KitchenOrderInUseCase, postgres_db, "[2] Add a new kitchen order into database", "EF Core")
+    Rel(KitchenOrderInUseCase, publisher, "[3] Publish OrderUp event to", "MediatR - Publisher")
 
-    Rel(publisher, OrderUpdateUseCase, "Subscribe OrderUpdate", "", $tags = "async")
-    Rel(publisher, BaristaOrderInUseCase, "Subscribe BaristaOrderIn", "", $tags = "async")
-    Rel(publisher, KitchenOrderInUseCase, "Subscribe KitchenOrderIn", "", $tags = "async")
+    Rel(OrderUpdateUseCase, publisher, "[1] Subscribe to OrderUpdate", "MediatR", $tags = "async")
+    Rel(OrderUpdateUseCase, NotificationHub, "[2] Push message to", "SignalR - Notification Hub")
 
-    Lay_D(LineItem, postgres_db)
+    Rel(OrderUpUseCase, publisher, "[1] Subscribe to OrderUp", "MediatR", $tags = "async")
+    Rel(OrderUpUseCase, postgres_db, "[2] Update order with OrderUp information and persitence into database", "EF Core")
+    Rel(OrderUpUseCase, publisher, "[3] Publish OrderUpdate event to", "MediatR - Publisher")
 }
 
-
+Lay_D(OrderInUseCase, KitchenOrderInUseCase)
+Lay_R(KitchenOrderInUseCase, BaristaOrderInUseCase)
+Lay_D(OrderUpUseCase, BaristaOrderInUseCase)
+Lay_U(OrderUpdateUseCase, publisher)
+Lay_L(KitchenOrderInUseCase, publisher)
+Lay_L(OrderInUseCase, publisher)
+Lay_R(sender, publisher)
 
 @enduml

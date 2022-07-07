@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1338px" preserveAspectRatio="none" style="width:1566px;height:1338px;background:#FFFFFF;" version="1.1" viewBox="0 0 1566 1338" width="1566px" zoomAndPan="magnify"><defs/><g><rect height="26.2969" style="stroke:#00000000;stroke-width:1.0;fill:none;" width="310" x="621" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="300" x="626" y="22.9951">Components Diagram for Coffee Shop</text><!--MD5=[10e892b5d8ea6b5dd486f46f564c3b8a]
+cluster coffeeshop_app--><g id="cluster_coffeeshop_app"><rect height="838" rx="2.5" ry="2.5" style="stroke:#444444;stroke-width:1.0;fill:none;stroke-dasharray:7.0,7.0;" width="1375" x="7" y="277.2969"/><text fill="#444444" font-family="sans-serif" font-size="6" font-style="italic" lengthAdjust="spacing" textLength="38" x="675.5" y="284.8662">«boundary»</text><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="407" x="491" y="304.1484">Coffee Shop Application - .NET 7 - Minimal API</text><text fill="#444444" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="80" x="654.5" y="319.0605">[Container]</text></g><!--MD5=[beeead8bbd2518995c52007b9077f629]
+entity app_router--><g id="elem_app_router"><rect fill="#85BBF0" height="115.4531" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="220" x="1004" y="338.2969"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="85" x="1071.5" y="359.4355">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="123" x="1052.5" y="377.1172">/v1/api/orders</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="58" x="1085" y="392.0293">[Routing]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1112" y="407.8545"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="196" x="1014" y="424.1514">this is an entry point into the</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="1077" y="440.4482">application</text></g><!--MD5=[b84dfc3c68caa5bb5eca96917ddde04e]
+entity sender--><g id="elem_sender"><rect fill="#85BBF0" height="66.5625" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="163" x="1032.5" y="570.2969"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="85" x="1071.5" y="591.4355">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="63" x="1082.5" y="609.1172">Sender</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="143" x="1042.5" y="624.0293">[C#, MediatR - Sender]</text></g><!--MD5=[1fe25e6ad2a661c9f8478b5f50e2a15d]
+entity publisher--><g id="elem_publisher"><rect fill="#85BBF0" height="66.5625" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="176" x="748" y="570.2969"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="85" x="793.5" y="591.4355">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="82" x="795" y="609.1172">Publisher</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="156" x="758" y="624.0293">[C#, MediatR - Publisher]</text></g><!--MD5=[d93275b6ba9fd1becbbea4ad80549e75]
+entity OrderInUseCase--><g id="elem_OrderInUseCase"><rect fill="#85BBF0" height="115.4531" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="219" x="1146.5" y="782.2969"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="85" x="1213.5" y="803.4355">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="145" x="1183.5" y="821.1172">OrderInUseCase</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="28" x="1242" y="836.0293">[C#]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1254" y="851.8545"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="199" x="1156.5" y="868.1514">Handle PlaceOrderCommand</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54" x="1229" y="884.4482">request</text></g><!--MD5=[47f67c89d1a88e898dfefbcafce05e8b]
+entity OrderUpUseCase--><g id="elem_OrderUpUseCase"><rect fill="#85BBF0" height="99.1563" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="173" x="730.5" y="346.2969"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="85" x="774.5" y="367.4355">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="151" x="741.5" y="385.1172">OrderUpUseCase</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="28" x="803" y="400.0293">[C#]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="815" y="415.8545"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="153" x="740.5" y="432.1514">Handle OrderUp event</text></g><!--MD5=[23becc08784d444479794f87f6ee01b3]
+entity OrderUpdateUseCase--><g id="elem_OrderUpdateUseCase"><rect fill="#85BBF0" height="99.1563" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="211" x="461.5" y="790.2969"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="85" x="524.5" y="811.4355">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="191" x="471.5" y="829.1172">OrderUpdateUseCase</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="28" x="553" y="844.0293">[C#]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="565" y="859.8545"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="184" x="475" y="876.1514">Handle OrderUpdate event</text></g><!--MD5=[ab278b3564d7d9373b4af36f2cc285f4]
+entity KitchenOrderInUseCase--><g id="elem_KitchenOrderInUseCase"><rect fill="#85BBF0" height="99.1563" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="231" x="846.5" y="1000.2969"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="85" x="919.5" y="1021.4355">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="211" x="856.5" y="1039.1172">KitchenOrderInUseCase</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="28" x="948" y="1054.0293">[C#]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="960" y="1069.8545"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="198" x="863" y="1086.1514">Handle KitchenOrderIn event</text></g><!--MD5=[70ffa2a3aca2dec3da4c29d6f5f5278a]
+entity BaristaOrderInUseCase--><g id="elem_BaristaOrderInUseCase"><rect fill="#85BBF0" height="99.1563" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="227" x="195.5" y="1000.2969"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="85" x="266.5" y="1021.4355">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="207" x="205.5" y="1039.1172">BaristaOrderInUseCase</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="28" x="295" y="1054.0293">[C#]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="307" y="1069.8545"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="193" x="212.5" y="1086.1514">Handle BaristaOrderIn event</text></g><!--MD5=[5fe9e29d73943a63ad123297256a0b75]
+entity NotificationHub--><g id="elem_NotificationHub"><rect fill="#85BBF0" height="66.5625" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="206" x="464" y="1016.2969"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="85" x="524.5" y="1037.4355">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="135" x="499.5" y="1055.1172">NotificationHub</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="186" x="474" y="1070.0293">[C#, SignalR Notification Hub]</text></g><!--MD5=[9ea266bcd509caf427c5a26db45d43d1]
+entity normal_user--><g id="elem_normal_user"><ellipse cx="1114" cy="72.1488" fill="#08427B" rx="28.852" ry="28.852" style="stroke:#073B6F;stroke-width:0.5;"/><rect fill="#08427B" height="101.4844" rx="28.852" ry="28.852" style="stroke:#073B6F;stroke-width:0.5;" width="186" x="1021" y="101.0008"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="58" x="1085" y="122.1395">«person»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="109" x="1059.5" y="139.8211">Normal User</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1112" y="156.5897"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="158" x="1035" y="172.8865">A user buys coffee and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="39" x="1094.5" y="189.1834">foods</text></g><!--MD5=[e88b9fafaecd34ed8afee551b388689b]
+entity postgres_db--><g id="elem_postgres_db"><path d="M1068.5,1228.2969 C1068.5,1218.2969 1168,1218.2969 1168,1218.2969 C1168,1218.2969 1267.5,1218.2969 1267.5,1228.2969 L1267.5,1311.7969 C1267.5,1321.7969 1168,1321.7969 1168,1321.7969 C1168,1321.7969 1068.5,1321.7969 1068.5,1311.7969 L1068.5,1228.2969 " fill="#438DD5" style="stroke:#3C7FC0;stroke-width:0.5;"/><path d="M1068.5,1228.2969 C1068.5,1238.2969 1168,1238.2969 1168,1238.2969 C1168,1238.2969 1267.5,1238.2969 1267.5,1228.2969 " fill="none" style="stroke:#3C7FC0;stroke-width:0.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="74" x="1131" y="1253.4355">«container»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="111" x="1112.5" y="1271.1172">Postgres Db</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="171" x="1080.5" y="1286.0293">[The database to store the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="175" x="1078.5" y="1299.998">coffee shop data in multiple</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="136" x="1100" y="1313.9668">schemas and tables.]</text></g><!--MD5=[a57f16fe101bfec6ccfe60b8d7d1b8d7]
+link normal_user to app_router--><g id="link_normal_user_app_router"><path d="M1114,202.5469 C1114,243.1069 1114,291.9469 1114,330.2469 " fill="none" id="normal_user-to-app_router" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1114,338.2569,1117,330.2569,1111,330.2569,1114,338.2569" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="35" x="1134.5" y="244.4355">Uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="74" x="1115" y="258.4043">[REST/JSON]</text></g><!--MD5=[2b9b677b342544fb77004d30dbba0d62]
+link app_router to sender--><g id="link_app_router_sender"><path d="M1114,453.3569 C1114,487.7969 1114,531.0069 1114,562.0869 " fill="none" id="app_router-to-sender" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1114,570.1169,1117,562.1169,1111,562.1169,1114,570.1169" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="36" x="1169" y="502.4355">Send</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="148" x="1115" y="516.4043">PlaceOrderCommand</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="117" x="1130.5" y="530.373">[MediatR - Sender]</text></g><!--MD5=[53888c2abbf949710c1577f991ccf993]
+reverse link sender to OrderInUseCase--><g id="link_sender_OrderInUseCase"><path d="M1157.34,643.6069 C1164.4,651.0669 1171.27,659.1069 1177,667.2969 C1201.81,702.7469 1222.04,747.2369 1235.81,782.0169 " fill="none" id="sender-backto-OrderInUseCase" style="stroke:#666666;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#666666" points="1151.38,637.4969,1154.8171,645.3191,1159.1129,641.1303,1151.38,637.4969" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="111" x="1238.5" y="700.4355">[1] Subscribe to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="148" x="1222" y="714.4043">PlaceOrderCommand</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="60" x="1266" y="728.373">[MediatR]</text></g><!--MD5=[1d443c2ccf6b1905b43259ac79e9a307]
+link OrderInUseCase to postgres_db--><g id="link_OrderInUseCase_postgres_db"><path d="M1247.46,897.4569 C1236.6,966.5669 1216.33,1086.7269 1192,1188.2969 C1190.29,1195.4169 1188.34,1202.8469 1186.3,1210.1869 " fill="none" id="OrderInUseCase-to-postgres_db" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1184.06,1218.0969,1189.1339,1211.2226,1183.3627,1209.5814,1184.06,1218.0969" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="139" x="1230" y="1040.4355">[2] Add a new order</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="100" x="1251.5" y="1054.4043">into database</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="58" x="1272.5" y="1068.373">[EF Core]</text></g><!--MD5=[0336ef922c335d8bf900b4ef8eef8abd]
+link OrderInUseCase to publisher--><g id="link_OrderInUseCase_publisher"><path d="M1146.15,792.1469 C1137.01,788.6769 1127.88,785.3469 1119,782.2969 C1071.89,766.1069 1047.76,785.9169 1011,752.2969 C981.21,725.0569 1006.79,696.5769 979,667.2969 C965.86,653.4569 949.13,642.4969 931.77,633.8869 " fill="none" id="OrderInUseCase-to-publisher" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="924.3,630.3369,930.2425,636.4758,932.8138,631.0547,924.3,630.3369" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="74" x="1047.5" y="679.4355">[3] Publish</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="110" x="1029.5" y="693.4043">BaristaOrderIn,</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="143" x="1013" y="707.373">KitchenOrderIn, and</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="145" x="1012" y="721.3418">OrderUpdate events</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="15" x="1079" y="735.3105">to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="130" x="1021.5" y="749.2793">[MediatR - Publisher]</text></g><!--MD5=[b252100555f3973a10ad5b0ce42ba7ae]
+link publisher to OrderInUseCase--><!--MD5=[fb15acb6e62b8b658353f5ec596817bf]
+link BaristaOrderInUseCase to publisher--><g id="link_BaristaOrderInUseCase_publisher"><path d="M298.84,1000.2469 C289.7,943.0869 283.57,847.6669 327,782.2969 C416.93,646.9469 619.03,613.5469 739.76,606.0669 " fill="none" id="BaristaOrderInUseCase-to-publisher" style="stroke:#666666;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#666666" points="747.95,605.5869,739.7916,603.049,740.1345,609.0392,747.95,605.5869" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="111" x="328" y="830.4355">[1] Subscribe to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="105" x="333" y="844.4043">BaristaOrderIn</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="60" x="355.5" y="858.373">[MediatR]</text></g><!--MD5=[fb15acb6e62b8b658353f5ec596817bf]
+link BaristaOrderInUseCase to publisher--><g id="link_BaristaOrderInUseCase_publisher"><path d="M230.73,1000.0069 C196.72,974.1169 160.47,938.9969 142,897.2969 C121.3,850.5669 116.36,826.5069 142,782.2969 C193.64,693.2669 245.4,699.9569 343,667.2969 C475.83,622.8469 638.47,609.6469 739.68,605.9269 " fill="none" id="BaristaOrderInUseCase-to-publisher-1" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="747.76,605.6469,739.6578,602.9348,739.8724,608.931,747.76,605.6469" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="138" x="143" y="830.4355">[3] Publish OrderUp</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="59" x="184.5" y="844.4043">event to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="130" x="149" y="858.373">[MediatR - Publisher]</text></g><!--MD5=[9b3c59de6415df2e0ca8d03ed0224ce2]
+link BaristaOrderInUseCase to postgres_db--><g id="link_BaristaOrderInUseCase_postgres_db"><path d="M392.31,1099.3869 C409.96,1108.2969 428.77,1116.8069 447,1123.2969 C657.5,1198.1769 917.01,1238.8969 1060.24,1257.1769 " fill="none" id="BaristaOrderInUseCase-to-postgres_db" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1068.23,1258.1869,1060.6754,1254.196,1059.914,1260.1475,1068.23,1258.1869" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="96" x="676" y="1143.4355">[2] Add a new</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="126" x="661" y="1157.4043">barista order into</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="68" x="692" y="1171.373">database</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="58" x="697" y="1185.3418">[EF Core]</text></g><!--MD5=[c8a03452e5df24edf751b26931bfef8c]
+link KitchenOrderInUseCase to publisher--><g id="link_KitchenOrderInUseCase_publisher"><path d="M868.79,1000.2069 C830.79,975.0469 790.93,940.4769 770,897.2969 C729.17,813.0669 778.26,702.8569 811.09,644.7169 " fill="none" id="KitchenOrderInUseCase-to-publisher" style="stroke:#666666;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#666666" points="815.21,637.5469,808.6205,642.9854,813.8213,645.9773,815.21,637.5469" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="111" x="771" y="830.4355">[1] Subscribe to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="107" x="775" y="844.4043">KitchenOrderIn</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="60" x="798.5" y="858.373">[MediatR]</text></g><!--MD5=[c8a03452e5df24edf751b26931bfef8c]
+link KitchenOrderInUseCase to publisher--><g id="link_KitchenOrderInUseCase_publisher"><path d="M949.63,1000.0069 C935.9,946.4369 912.8,857.9869 891,782.2969 C877.39,735.0269 860.48,681.1069 849.03,645.2169 " fill="none" id="KitchenOrderInUseCase-to-publisher-1" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="846.53,637.3969,846.1173,645.9309,851.8305,644.098,846.53,637.3969" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="138" x="923" y="830.4355">[3] Publish OrderUp</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="59" x="964.5" y="844.4043">event to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="130" x="929" y="858.373">[MediatR - Publisher]</text></g><!--MD5=[9fdd2c43cd110c21a307c4c9d19bf143]
+link publisher to KitchenOrderInUseCase--><!--MD5=[b030cec55c7135086c9aa5e6d9575d7b]
+link KitchenOrderInUseCase to postgres_db--><g id="link_KitchenOrderInUseCase_postgres_db"><path d="M989.01,1099.3969 C1005.84,1127.2169 1029.17,1161.7569 1055,1188.2969 C1063.42,1196.9569 1072.87,1205.3169 1082.62,1213.1769 " fill="none" id="KitchenOrderInUseCase-to-postgres_db" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1089.06,1218.2669,1084.6442,1210.9525,1080.9235,1215.6596,1089.06,1218.2669" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="96" x="1071.5" y="1143.4355">[2] Add a new</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="127" x="1056" y="1157.4043">kitchen order into</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="68" x="1087.5" y="1171.373">database</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="58" x="1092.5" y="1185.3418">[EF Core]</text></g><!--MD5=[328ebae9d5a3c483c04a404a27ba9496]
+link OrderUpdateUseCase to publisher--><g id="link_OrderUpdateUseCase_publisher"><path d="M562.98,790.1269 C562.6,751.9769 568.59,700.0269 599,667.2969 C618.5,646.3069 683.07,630.1069 739.89,619.4669 " fill="none" id="OrderUpdateUseCase-to-publisher" style="stroke:#666666;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#666666" points="747.85,617.9969,739.4397,616.4911,740.5234,622.3925,747.85,617.9969" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="111" x="600" y="700.4355">[1] Subscribe to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="93" x="611" y="714.4043">OrderUpdate</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="60" x="627.5" y="728.373">[MediatR]</text></g><!--MD5=[c8b01982bf0000a83a25a5a1d4724083]
+link publisher to OrderUpdateUseCase--><!--MD5=[35ebaf5619acc0c277bb6b2baf79e82a]
+link OrderUpdateUseCase to NotificationHub--><g id="link_OrderUpdateUseCase_NotificationHub"><path d="M567,889.2969 C567,925.2669 567,973.7569 567,1007.7969 " fill="none" id="OrderUpdateUseCase-to-NotificationHub" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="567,1016.1269,570,1008.1269,564,1008.1269,567,1016.1269" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="144" x="568" y="939.4355">[2] Push message to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="134" x="571" y="953.4043">[SignalR - Notification</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="30" x="625" y="967.373">Hub]</text></g><!--MD5=[274156171dce91c13033741ce707a35a]
+link OrderUpUseCase to publisher--><g id="link_OrderUpUseCase_publisher"><path d="M777.3,445.6069 C759.48,473.6769 745.4,509.3969 760,540.2969 C764.22,549.2269 770.41,557.3069 777.46,564.4769 " fill="none" id="OrderUpUseCase-to-publisher" style="stroke:#666666;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#666666" points="783.57,570.2769,779.8392,562.5904,775.7051,566.9388,783.57,570.2769" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="111" x="761" y="502.4355">[1] Subscribe to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="60" x="788.5" y="516.4043">OrderUp</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="60" x="788.5" y="530.373">[MediatR]</text></g><!--MD5=[274156171dce91c13033741ce707a35a]
+link OrderUpUseCase to publisher--><g id="link_OrderUpUseCase_publisher"><path d="M861.16,445.4169 C869.3,457.0569 876.61,469.9869 881,483.2969 C888.93,507.3569 888.78,516.1869 881,540.2969 C878.44,548.2169 874.47,555.9869 869.92,563.1969 " fill="none" id="OrderUpUseCase-to-publisher-1" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="865.21,570.2169,872.1586,565.2452,867.1762,561.9022,865.21,570.2169" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="74" x="918.5" y="495.4355">[3] Publish</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="137" x="887" y="509.4043">OrderUpdate event</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="15" x="950" y="523.373">to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="130" x="892.5" y="537.3418">[MediatR - Publisher]</text></g><!--MD5=[62fdd99b2e942034f7c50b83886d4c5a]
+link OrderUpUseCase to postgres_db--><g id="link_OrderUpUseCase_postgres_db"><path d="M903.79,429.6469 C930.18,438.5469 959.49,447.3469 987,453.2969 C1192.58,497.7369 1436,392.4669 1436,602.7969 C1436,602.7969 1436,602.7969 1436,1050.7969 C1436,1137.8569 1350,1196.3969 1275.43,1230.7969 " fill="none" id="OrderUpUseCase-to-postgres_db" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1267.79,1234.2469,1276.3151,1233.6789,1273.8396,1228.2134,1267.79,1234.2469" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="117" x="1437" y="809.4355">[2] Update order</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="95" x="1448" y="823.4043">with OrderUp</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="113" x="1439" y="837.373">information and</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="108" x="1441.5" y="851.3418">persitence into</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="68" x="1463.5" y="865.3105">database</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="58" x="1468.5" y="879.2793">[EF Core]</text></g><!--MD5=[b01d5f7866a9da94d5dd17d95e03fe96]
+link OrderInUseCase to KitchenOrderInUseCase--><!--MD5=[3fa90395b8286ad708764b9013f45ace]
+link KitchenOrderInUseCase to BaristaOrderInUseCase--><!--MD5=[7db48f0aa9afcf21698525859fc06be2]
+link OrderUpUseCase to BaristaOrderInUseCase--><!--MD5=[31d7fe169cb83159f769c226931203d6]
+link sender to publisher--><!--MD5=[7c241cb042b0c3ab93363267d8a1ff2d]
+@startuml coffeeshop_components
+
+' left to right direction
+' skinparam packageStyle rect
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+' uncomment the following line and comment the first to use locally
+' !include C4_Component.puml
+
+LAYOUT_TOP_DOWN()
+SHOW_PERSON_OUTLINE()
+' LAYOUT_AS_SKETCH()
+' LAYOUT_WITH_LEGEND()
+
+AddRelTag("async", $textColor=$ARROW_COLOR, $lineColor=$ARROW_COLOR, $lineStyle=DashedLine())
+
+title Components Diagram for Coffee Shop
+
+Person(normal_user, "Normal User", "A user buys coffee and foods")
+
+Container(coffeeshop_app, "The coffee shop application", "This application serves the coffee, drinks and foods and uses by counter, barista and kitchen modules.")
+ContainerDb(postgres_db, "Postgres Db", "The database to store the coffee shop data in multiple schemas and tables.")
+
+Container_Boundary(coffeeshop_app, "Coffee Shop Application - .NET 7 - Minimal API") {
+    Component(app_router, "/v1/api/orders", "Routing", "this is an entry point into the application")
+    
+    Component(sender, "Sender", "C#, MediatR - Sender", "")
+    Component(publisher, "Publisher", "C#, MediatR - Publisher", "")
+     
+    Component(OrderInUseCase, "OrderInUseCase", "C#", "Handle PlaceOrderCommand request")
+    Component(OrderUpUseCase, "OrderUpUseCase", "C#", "Handle OrderUp event")
+    Component(OrderUpdateUseCase, "OrderUpdateUseCase", "C#", "Handle OrderUpdate event")
+    Component(KitchenOrderInUseCase, "KitchenOrderInUseCase", "C#", "Handle KitchenOrderIn event")
+    Component(BaristaOrderInUseCase, "BaristaOrderInUseCase", "C#", "Handle BaristaOrderIn event")
+    
+    Component(NotificationHub, "NotificationHub", "C#, SignalR Notification Hub")
+
+    Rel(normal_user, app_router, "Uses", "REST/JSON")
+    Rel(app_router, sender, "Send PlaceOrderCommand", "MediatR - Sender")
+    
+    Rel_U(OrderInUseCase, sender, "[1] Subscribe to PlaceOrderCommand", "MediatR", $tags = "async")
+    Rel(OrderInUseCase, postgres_db, "[2] Add a new order into database", "EF Core")
+    Rel(OrderInUseCase, publisher, "[3] Publish BaristaOrderIn, KitchenOrderIn, and OrderUpdate events to", "MediatR - Publisher")
+    
+    Rel(BaristaOrderInUseCase, publisher, "[1] Subscribe to BaristaOrderIn", "MediatR", $tags = "async")
+    Rel(BaristaOrderInUseCase, postgres_db, "[2] Add a new barista order into database", "EF Core")
+    Rel(BaristaOrderInUseCase, publisher, "[3] Publish OrderUp event to", "MediatR - Publisher")
+
+    Rel(KitchenOrderInUseCase, publisher, "[1] Subscribe to KitchenOrderIn", "MediatR", $tags = "async")
+    Rel(KitchenOrderInUseCase, postgres_db, "[2] Add a new kitchen order into database", "EF Core")
+    Rel(KitchenOrderInUseCase, publisher, "[3] Publish OrderUp event to", "MediatR - Publisher")
+
+    Rel(OrderUpdateUseCase, publisher, "[1] Subscribe to OrderUpdate", "MediatR", $tags = "async")
+    Rel(OrderUpdateUseCase, NotificationHub, "[2] Push message to", "SignalR - Notification Hub")
+
+    Rel(OrderUpUseCase, publisher, "[1] Subscribe to OrderUp", "MediatR", $tags = "async")
+    Rel(OrderUpUseCase, postgres_db, "[2] Update order with OrderUp information and persitence into database", "EF Core")
+    Rel(OrderUpUseCase, publisher, "[3] Publish OrderUpdate event to", "MediatR - Publisher")
+}
+
+Lay_D(OrderInUseCase, KitchenOrderInUseCase)
+Lay_R(KitchenOrderInUseCase, BaristaOrderInUseCase)
+Lay_D(OrderUpUseCase, BaristaOrderInUseCase)
+Lay_U(OrderUpdateUseCase, publisher)
+Lay_L(KitchenOrderInUseCase, publisher)
+Lay_L(OrderInUseCase, publisher)
+Lay_R(sender, publisher)
+
+@enduml
+
+@startuml coffeeshop_components
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam defaultTextAlignment center
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 150
+
+skinparam LegendBorderColor transparent
+skinparam LegendBackgroundColor transparent
+skinparam LegendFontColor #FFFFFF
+
+skinparam shadowing<<legendArea>> false
+skinparam rectangle<<legendArea>> {
+    backgroundcolor #00000000
+    bordercolor #00000000
+}
+
+skinparam rectangle {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam database {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam queue {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam arrow {
+    Color #666666
+    FontColor #666666
+    FontSize 12
+}
+
+skinparam actor {
+    StereotypeFontSize 12
+    shadowing false
+    style awesome
+}
+
+skinparam person {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam package {
+    StereotypeFontSize 6
+    StereotypeFontColor transparent
+    FontStyle plain
+    BackgroundColor transparent
+}
+
+skinparam rectangle<<boundary>> {
+    Shadowing false
+    StereotypeFontSize 6
+    StereotypeFontColor transparent
+    FontColor #444444
+    BorderColor #444444
+    BackgroundColor transparent
+    BorderStyle dashed
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam database<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam queue<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam actor<<person>> {
+    StereotypeFontColor #08427B
+    FontColor #08427B
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam person<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+
+
+skinparam rectangle<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam database<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam actor<<external_person>> {
+    StereotypeFontColor #686868
+    FontColor #686868
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam person<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+
+
+skinparam rectangle<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam database<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam queue<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam actor<<system>> {
+    StereotypeFontColor #1168BD
+    FontColor #1168BD
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam person<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+
+skinparam rectangle<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam database<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam actor<<external_system>> {
+    StereotypeFontColor #999999
+    FontColor #999999
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam person<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+
+
+
+
+sprite $person [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000025788300000000005886410000000000000
+000000000007DFFFFFFD9643347BFFFFFFFB400000000000
+0000000004EFFFFFFFFFFFFFFFFFFFFFFFFFFB1000000000
+000000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFD200000000
+00000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE10000000
+0000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB0000000
+000000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5000000
+000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD000000
+000009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF200000
+00000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF600000
+00000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF800000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00000EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF700000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+0000008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD3000000
+000000014555555555555555555555555555555300000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+
+sprite $person2 [48x48/16] {
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000002578888300000000005888864100000000000
+0000000007DFFFFFFFFD9643347BFFFFFFFFFB4000000000
+00000004EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB10000000
+0000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2000000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+00003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+0000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF50000
+0003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0000
+0009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+0009FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFF2000
+0003FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFD0000
+0000BFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFF50000
+00003FFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFB00000
+000006FFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFE100000
+0000007FFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFD2000000
+00000004EFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFB10000000
+0000000007DF8FFFFFFFFFFFFFFFFFFFFFF8FB4000000000
+000000000002578888888888888888888864100000000000
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam database<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam queue<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam actor<<container>> {
+    StereotypeFontColor #438DD5
+    FontColor #438DD5
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam person<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+
+
+skinparam rectangle<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam database<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam queue<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam actor<<external_container>> {
+    StereotypeFontColor #B3B3B3
+    FontColor #B3B3B3
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam person<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+skinparam database<<component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+skinparam queue<<component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+skinparam actor<<component>> {
+    StereotypeFontColor #85BBF0
+    FontColor #85BBF0
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+skinparam person<<component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+
+
+skinparam rectangle<<external_component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #CCCCCC
+    BorderColor #BFBFBF
+}
+skinparam database<<external_component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #CCCCCC
+    BorderColor #BFBFBF
+}
+skinparam queue<<external_component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #CCCCCC
+    BorderColor #BFBFBF
+}
+skinparam actor<<external_component>> {
+    StereotypeFontColor #CCCCCC
+    FontColor #CCCCCC
+    BackgroundColor #CCCCCC
+    BorderColor #BFBFBF
+}
+skinparam person<<external_component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #CCCCCC
+    BorderColor #BFBFBF
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+top to bottom direction
+
+skinparam arrow<<async>> {
+    Color 666666;text:666666;line.dashed
+}
+
+
+title Components Diagram for Coffee Shop
+
+person "==Normal User\n\n A user buys coffee and foods" <<person>> as normal_user 
+
+rectangle "==The coffee shop application\n//<size:12>[This application serves the coffee, drinks and foods and uses by counter, barista and kitchen modules.]</size>//" <<container>> as coffeeshop_app 
+database "==Postgres Db\n//<size:12>[The database to store the coffee shop data in multiple schemas and tables.]</size>//" <<container>> as postgres_db 
+
+rectangle "==Coffee Shop Application - .NET 7 - Minimal API\n<size:12>[Container]</size>" <<boundary>> as coffeeshop_app  {
+    rectangle "==/v1/api/orders\n//<size:12>[Routing]</size>//\n\nthis is an entry point into the application" <<component>> as app_router 
+    
+    rectangle "==Sender\n//<size:12>[C#, MediatR - Sender]</size>//" <<component>> as sender 
+    rectangle "==Publisher\n//<size:12>[C#, MediatR - Publisher]</size>//" <<component>> as publisher 
+     
+    rectangle "==OrderInUseCase\n//<size:12>[C#]</size>//\n\nHandle PlaceOrderCommand request" <<component>> as OrderInUseCase 
+    rectangle "==OrderUpUseCase\n//<size:12>[C#]</size>//\n\nHandle OrderUp event" <<component>> as OrderUpUseCase 
+    rectangle "==OrderUpdateUseCase\n//<size:12>[C#]</size>//\n\nHandle OrderUpdate event" <<component>> as OrderUpdateUseCase 
+    rectangle "==KitchenOrderInUseCase\n//<size:12>[C#]</size>//\n\nHandle KitchenOrderIn event" <<component>> as KitchenOrderInUseCase 
+    rectangle "==BaristaOrderInUseCase\n//<size:12>[C#]</size>//\n\nHandle BaristaOrderIn event" <<component>> as BaristaOrderInUseCase 
+    
+    rectangle "==NotificationHub\n//<size:12>[C#, SignalR Notification Hub]</size>//" <<component>> as NotificationHub 
+
+    normal_user - ->> app_router : **Uses**\n//<size:12>[REST/JSON]</size>//
+    app_router - ->> sender : **Send PlaceOrderCommand**\n//<size:12>[MediatR - Sender]</size>//
+    
+    OrderInUseCase -UP->> sender <<async>> : **[1] Subscribe to PlaceOrderCommand**\n//<size:12>[MediatR]</size>//
+    OrderInUseCase - ->> postgres_db : **[2] Add a new order into database**\n//<size:12>[EF Core]</size>//
+    OrderInUseCase - ->> publisher : **[3] Publish BaristaOrderIn, KitchenOrderIn, and OrderUpdate events to**\n//<size:12>[MediatR - Publisher]</size>//
+    
+    BaristaOrderInUseCase - ->> publisher <<async>> : **[1] Subscribe to BaristaOrderIn**\n//<size:12>[MediatR]</size>//
+    BaristaOrderInUseCase - ->> postgres_db : **[2] Add a new barista order into database**\n//<size:12>[EF Core]</size>//
+    BaristaOrderInUseCase - ->> publisher : **[3] Publish OrderUp event to**\n//<size:12>[MediatR - Publisher]</size>//
+
+    KitchenOrderInUseCase - ->> publisher <<async>> : **[1] Subscribe to KitchenOrderIn**\n//<size:12>[MediatR]</size>//
+    KitchenOrderInUseCase - ->> postgres_db : **[2] Add a new kitchen order into database**\n//<size:12>[EF Core]</size>//
+    KitchenOrderInUseCase - ->> publisher : **[3] Publish OrderUp event to**\n//<size:12>[MediatR - Publisher]</size>//
+
+    OrderUpdateUseCase - ->> publisher <<async>> : **[1] Subscribe to OrderUpdate**\n//<size:12>[MediatR]</size>//
+    OrderUpdateUseCase - ->> NotificationHub : **[2] Push message to**\n//<size:12>[SignalR - Notification Hub]</size>//
+
+    OrderUpUseCase - ->> publisher <<async>> : **[1] Subscribe to OrderUp**\n//<size:12>[MediatR]</size>//
+    OrderUpUseCase - ->> postgres_db : **[2] Update order with OrderUp information and persitence into database**\n//<size:12>[EF Core]</size>//
+    OrderUpUseCase - ->> publisher : **[3] Publish OrderUpdate event to**\n//<size:12>[MediatR - Publisher]</size>//
+}
+
+OrderInUseCase -[hidden]D- KitchenOrderInUseCase
+KitchenOrderInUseCase -[hidden]R- BaristaOrderInUseCase
+OrderUpUseCase -[hidden]D- BaristaOrderInUseCase
+OrderUpdateUseCase -[hidden]U- publisher
+KitchenOrderInUseCase -[hidden]L- publisher
+OrderInUseCase -[hidden]L- publisher
+sender -[hidden]R- publisher
+
+@enduml
+
+PlantUML version 1.2022.6(Tue Jun 21 17:34:49 UTC 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>

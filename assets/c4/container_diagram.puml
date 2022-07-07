@@ -17,9 +17,9 @@ title Container Diagram for Coffee Shop
 Person(normal_user, "Normal User", "A user buys coffee and foods")
 
 Boundary(c1, "Coffee Shop Application") {
-    Container(coffeeshop_app, "The coffee shop application", "This application serves the coffee, drinks and foods and uses by counter, barista and kitchen modules.")
+    Container(coffeeshop_app, "The coffee shop application", "Container: .NET 7, C#", "This application serves the coffee, drinks and foods and uses by counter, barista and kitchen modules.")
 
-    ContainerDb(postgres_db, "Postgres Db", "The database to store the coffee shop data in multiple schemas and tables.")
+    ContainerDb(postgres_db, "Postgres Db", "Container: postgres:14-alpine", "The database to store the coffee shop data in multiple schemas and tables.")
 }
 
 Rel(normal_user, coffeeshop_app, "Uses", "REST/JSON")

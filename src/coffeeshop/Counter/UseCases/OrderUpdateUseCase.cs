@@ -18,6 +18,8 @@ namespace CoffeeShop.Counter.UseCases
 
         public override async Task HandleEvent(OrderUpdate @event, CancellationToken cancellationToken)
         {
+            ArgumentNullException.ThrowIfNull(@event);
+            
             var message = $"{@event.OrderId}-{@event.ItemLineId}-{Item.GetItem(@event.ItemType)?.ToString()}-{@event.OrderStatus}";
             Console.WriteLine(message);
             await _hubContext.Clients.All.SendMessage(message);
