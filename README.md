@@ -14,4 +14,13 @@
 
 ![](assets/coffeeshop_components.svg)
 
+
+# Start project with docker-compose
+
+```bash
+> docker compose up
+```
+
+# Start project with nomad at [here](nomad/README.md)
+
 > This project mainly based on https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-majestic-monolith, and customized some parts to adapt with .NET 7
