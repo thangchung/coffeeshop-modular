@@ -34,7 +34,7 @@ public class Order : EntityRootBase
             foreach (var baritaItem in placeOrderCommand.BaristaItems)
             {
                 var item = Item.GetItem(baritaItem.ItemType);
-                var lineItem = new LineItem(baritaItem.ItemType, item.Type.ToString(), item.Price, ItemStatus.IN_PROGRESS, order, true);
+                var lineItem = new LineItem(baritaItem.ItemType, item.Type.ToString(), item.Price, ItemStatus.IN_PROGRESS, true);
 
                 order.AddDomainEvent(new BaristaOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
                 order.AddDomainEvent(new OrderUpdate(order.Id, lineItem.Id, lineItem.ItemType, OrderStatus.IN_PROGRESS));
@@ -48,7 +48,7 @@ public class Order : EntityRootBase
             foreach (var kitchenItem in placeOrderCommand.KitchenItems)
             {
                 var item = Item.GetItem(kitchenItem.ItemType);
-                var lineItem = new LineItem(kitchenItem.ItemType, item.Type.ToString(), item.Price, ItemStatus.IN_PROGRESS, order, false);
+                var lineItem = new LineItem(kitchenItem.ItemType, item.Type.ToString(), item.Price, ItemStatus.IN_PROGRESS, false);
 
                 order.AddDomainEvent(new KitchenOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
                 order.AddDomainEvent(new OrderUpdate(order.Id, lineItem.Id, lineItem.ItemType, OrderStatus.IN_PROGRESS));

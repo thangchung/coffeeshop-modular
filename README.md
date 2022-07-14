@@ -18,6 +18,10 @@
 # Start project with docker-compose
 
 ```bash
+> docker compose build
+```
+
+```bash
 > docker compose up
 ```
 

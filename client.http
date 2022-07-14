@@ -22,3 +22,7 @@ content-type: application/json
   ],
   "timestamp": "2022-07-04T11:38:00.210Z"
 }
+
+###
+GET {{host}}/v1/api/fulfillment-orders HTTP/1.1
+content-type: application/json

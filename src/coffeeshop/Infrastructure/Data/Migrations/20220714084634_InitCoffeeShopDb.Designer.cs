@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CoffeeShop.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20220705140035_InitCoffeeShopDb")]
+    [Migration("20220714084634_InitCoffeeShopDb")]
     partial class InitCoffeeShopDb
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace CoffeeShop.Infrastructure.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-preview.5.22302.2")
+                .HasAnnotation("ProductVersion", "7.0.0-preview.6.22329.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "uuid-ossp");
@@ -98,7 +98,7 @@ namespace CoffeeShop.Infrastructure.Data.Migrations
                         .HasColumnType("text")
                         .HasColumnName("name");
 
-                    b.Property<Guid>("OrderId")
+                    b.Property<Guid?>("OrderId")
                         .HasColumnType("uuid")
                         .HasColumnName("order_id");
 
@@ -214,14 +214,10 @@ namespace CoffeeShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CoffeeShop.Domain.LineItem", b =>
                 {
-                    b.HasOne("CoffeeShop.Domain.Order", "Order")
+                    b.HasOne("CoffeeShop.Domain.Order", null)
                         .WithMany("LineItems")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("fk_line_items_orders_order_temp_id");
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("CoffeeShop.Domain.Order", b =>

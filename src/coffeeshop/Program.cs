@@ -1,6 +1,7 @@
-// dotnet tool update --global dotnet-ef --version 7.0.0-preview.5.22302.2
-// dotnet ef migrations add InitCoffeeShopDb -c MainDbContext -o Infrastructure/Data/Migrations
+// dotnet tool update --global dotnet-ef --version 7.0.0-preview.6.22329.4
+// cd src/coffeeshop/ && dotnet ef migrations add InitCoffeeShopDb -c MainDbContext -o Infrastructure/Data/Migrations
 
+using CoffeeShop.Counter.UseCases;
 using CoffeeShop.Domain;
 using CoffeeShop.Domain.Commands;
 using CoffeeShop.Infrastructure.Data;
@@ -60,6 +61,9 @@ if (app.Environment.IsDevelopment())
 
 app.MapPost("/v1/api/orders",
     async (PlaceOrderCommand command, ISender sender) => await sender.Send(command));
+
+app.MapGet("/v1/api/fulfillment-orders",
+    async (ISender sender) => await sender.Send(new OrderFulfillmentQuery()));
 
 app.MapHub<NotificationHub>("/message");
 

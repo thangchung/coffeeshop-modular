@@ -56,7 +56,6 @@ public class MainDbContext : AppDbContextBase
         modelBuilder.Entity<LineItem>().Property(x => x.Id).HasColumnType("uuid")
             .HasDefaultValueSql(Consts.UuidAlgorithm);
 
-        modelBuilder.Entity<LineItem>().Property(x => x.OrderId).HasColumnType("uuid");
         modelBuilder.Entity<LineItem>().Property(x => x.Created).HasDefaultValueSql(Consts.DateAlgorithm);
 
         modelBuilder.Entity<LineItem>().HasIndex(x => x.Id).IsUnique();
@@ -79,10 +78,5 @@ public class MainDbContext : AppDbContextBase
         // relationships
         modelBuilder.Entity<Order>()
             .HasMany(x => x.LineItems);
-
-        modelBuilder.Entity<LineItem>()
-            .HasOne(x => x.Order)
-            .WithMany(x => x.LineItems)
-            .HasForeignKey(x => x.OrderId);
     }
 }

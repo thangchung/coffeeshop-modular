@@ -82,12 +82,12 @@ namespace CoffeeShop.Infrastructure.Data.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
-                    order_id = table.Column<Guid>(type: "uuid", nullable: false),
                     item_type = table.Column<int>(type: "integer", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
                     price = table.Column<decimal>(type: "numeric", nullable: false),
                     item_status = table.Column<int>(type: "integer", nullable: false),
                     is_barista_order = table.Column<bool>(type: "boolean", nullable: false),
+                    order_id = table.Column<Guid>(type: "uuid", nullable: true),
                     created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
                     updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
@@ -99,8 +99,7 @@ namespace CoffeeShop.Infrastructure.Data.Migrations
                         column: x => x.order_id,
                         principalSchema: "order",
                         principalTable: "orders",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateIndex(

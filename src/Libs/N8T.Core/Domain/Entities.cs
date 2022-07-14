@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace N8T.Core.Domain
 {
@@ -20,6 +21,7 @@ namespace N8T.Core.Domain
 
     public abstract class EntityRootBase : EntityBase, IAggregateRoot
     {
+        [JsonIgnore]
         public HashSet<IDomainEvent> DomainEvents { get; private set; }
 
         public void AddDomainEvent(IDomainEvent eventItem)
