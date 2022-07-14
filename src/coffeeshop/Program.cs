@@ -14,8 +14,20 @@ using N8T.Infrastructure.EfCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services
-    .AddCustomCors()
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy(
+            name: "api",
+            builder =>
+            {
+                builder
+                    .WithOrigins("http://localhost:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowCredentials();
+            });
+    })
     .AddHttpContextAccessor()
     .AddCustomMediatR(new[] { typeof(Order) })
     .AddCustomValidators(new[] { typeof(Order) });
@@ -36,8 +48,6 @@ builder.Services.AddSignalR();
 
 var app = builder.Build();
 
-app.UseCustomCors();
-
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -49,6 +59,8 @@ app.MapGet("/error", () => Results.Problem("An error occurred.", statusCode: 500
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseRouting();
+
+app.UseCors("api");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
