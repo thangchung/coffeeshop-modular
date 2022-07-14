@@ -59,11 +59,7 @@ if (app.Environment.IsDevelopment())
 
 //app.UseAuthorization();
 
-app.MapPost("/v1/api/orders",
-    async (PlaceOrderCommand command, ISender sender) => await sender.Send(command));
-
-app.MapGet("/v1/api/fulfillment-orders",
-    async (ISender sender) => await sender.Send(new OrderFulfillmentQuery()));
+app.MapGroup("/v1/api").MapOrderApi();
 
 app.MapHub<NotificationHub>("/message");
 
@@ -72,3 +68,17 @@ app.MapFallback(() => Results.Redirect("/swagger"));
 await app.DoDbMigrationAsync(app.Logger);
 
 app.Run();
+
+public static class OrderApi
+{
+    public static RouteGroupBuilder MapOrderApi(this RouteGroupBuilder group)
+    {
+        group.MapPost("/orders",
+            async (PlaceOrderCommand command, ISender sender) => await sender.Send(command));
+
+        group.MapGet("/fulfillment-orders",
+            async (ISender sender) => await sender.Send(new OrderFulfillmentQuery()));
+
+        return group;
+    }
+}
