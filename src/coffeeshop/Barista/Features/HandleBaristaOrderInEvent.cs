@@ -5,14 +5,14 @@ using MediatR;
 using N8T.Core.Domain;
 using N8T.Core.Repository;
 
-namespace CoffeeShop.Barista.UseCases;
+namespace CoffeeShop.Barista.Features;
 
-public class OrderInUseCase : N8T.Infrastructure.Events.DomainEventHandler<BaristaOrderIn>
+public class HandleBaristaOrderInEvent : N8T.Infrastructure.Events.DomainEventHandler<BaristaOrderIn>
 {
     private readonly IRepository<BaristaItem> _baristaItemRepository;
     private readonly IPublisher _publisher;
 
-    public OrderInUseCase(IRepository<BaristaItem> baristaItemRepository, IPublisher publisher)
+    public HandleBaristaOrderInEvent(IRepository<BaristaItem> baristaItemRepository, IPublisher publisher)
     {
         _baristaItemRepository = baristaItemRepository;
         _publisher = publisher;

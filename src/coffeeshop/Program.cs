@@ -1,13 +1,16 @@
 // dotnet tool update --global dotnet-ef --version 7.0.0-preview.6.22329.4
 // cd src/coffeeshop/ && dotnet ef migrations add InitCoffeeShopDb -c MainDbContext -o Infrastructure/Data/Migrations
 
-using CoffeeShop.Counter.UseCases;
+using CoffeeShop.Counter.Features;
 using CoffeeShop.Domain;
 using CoffeeShop.Infrastructure.Data;
 using CoffeeShop.Infrastructure.Hubs;
 using N8T.Infrastructure;
 using N8T.Infrastructure.Controller;
 using N8T.Infrastructure.EfCore;
+using Spectre.Console;
+
+AnsiConsole.Write(new FigletText("CoffeeShop APIs").Color(Color.MediumPurple));
 
 var builder = WebApplication.CreateBuilder(args);
 

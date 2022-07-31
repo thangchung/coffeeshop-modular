@@ -5,14 +5,14 @@ using MediatR;
 using N8T.Core.Domain;
 using N8T.Core.Repository;
 
-namespace CoffeeShop.Kitchen.UseCases;
+namespace CoffeeShop.Kitchen.Features;
 
-public class OrderInUseCase : N8T.Infrastructure.Events.DomainEventHandler<KitchenOrderIn>
+public class HandleKitchenOrderInEvent : N8T.Infrastructure.Events.DomainEventHandler<KitchenOrderIn>
 {
     private readonly IRepository<KitchenOrder> _kitchenOrderRepository;
     private readonly IPublisher _publisher;
 
-    public OrderInUseCase(IRepository<KitchenOrder> kitchenOrderRepository, IPublisher publisher) 
+    public HandleKitchenOrderInEvent(IRepository<KitchenOrder> kitchenOrderRepository, IPublisher publisher) 
     {
         _kitchenOrderRepository = kitchenOrderRepository;
         _publisher = publisher;

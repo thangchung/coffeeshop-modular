@@ -1,9 +1,11 @@
 ﻿using CoffeeShop.Domain;
 using CoffeeShop.Domain.Commands;
+using FluentValidation;
 using MediatR;
+using N8T.Core.Domain;
 using N8T.Core.Repository;
 
-namespace CoffeeShop.Counter.UseCases;
+namespace CoffeeShop.Counter.Features;
 
 public static class OrderInRouteMapper
 {
@@ -14,23 +16,32 @@ public static class OrderInRouteMapper
     }
 }
 
-public class OrderInUseCase : N8T.Infrastructure.Events.RequestHandler<PlaceOrderCommand, IResult>
+internal class OrderInValidator : AbstractValidator<PlaceOrderCommand>
+{
+    public OrderInValidator()
+    {
+    }
+}
+
+public class PlaceOrder : IRequestHandler<PlaceOrderCommand, IResult>
 {
     private readonly IRepository<Order> _orderRepository;
+    private readonly IPublisher _publisher;
 
-    public OrderInUseCase(IRepository<Order> orderRepository, IPublisher publisher) : base(publisher)
+    public PlaceOrder(IRepository<Order> orderRepository, IPublisher publisher)
     {
         _orderRepository = orderRepository;
+        _publisher = publisher;
     }
 
-    public override async Task<IResult> Handle(PlaceOrderCommand placeOrderCommand, CancellationToken cancellationToken)
+    public async Task<IResult> Handle(PlaceOrderCommand placeOrderCommand, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(placeOrderCommand);
 
         var order = Order.From(placeOrderCommand);
         await _orderRepository.AddAsync(order, cancellationToken: cancellationToken);
 
-        await RelayAndPublishEvents(order, cancellationToken);
+        await order.RelayAndPublishEvents(_publisher, cancellationToken);
 
         return Results.Ok();
     }
