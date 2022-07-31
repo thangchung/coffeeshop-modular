@@ -2,6 +2,7 @@
 using CoffeeShop.Domain;
 using CoffeeShop.Domain.DomainEvents;
 using MediatR;
+using N8T.Core.Domain;
 using N8T.Core.Repository;
 
 namespace CoffeeShop.Barista.UseCases;
@@ -9,11 +10,12 @@ namespace CoffeeShop.Barista.UseCases;
 public class OrderInUseCase : N8T.Infrastructure.Events.DomainEventHandler<BaristaOrderIn>
 {
     private readonly IRepository<BaristaItem> _baristaItemRepository;
+    private readonly IPublisher _publisher;
 
     public OrderInUseCase(IRepository<BaristaItem> baristaItemRepository, IPublisher publisher)
-        : base(publisher)
     {
         _baristaItemRepository = baristaItemRepository;
+        _publisher = publisher;
     }
 
     public override async Task HandleEvent(BaristaOrderIn @event, CancellationToken cancellationToken)
@@ -28,7 +30,7 @@ public class OrderInUseCase : N8T.Infrastructure.Events.DomainEventHandler<Baris
 
         await _baristaItemRepository.AddAsync(baristaItem, cancellationToken: cancellationToken);
 
-        await RelayAndPublishEvents(baristaItem, cancellationToken);
+        await baristaItem.RelayAndPublishEvents(_publisher, cancellationToken);
     }
 
     private static TimeSpan CalculateDelay(ItemType itemType)

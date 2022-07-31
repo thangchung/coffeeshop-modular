@@ -2,6 +2,7 @@
 using CoffeeShop.Domain.DomainEvents;
 using CoffeeShop.Kitchen.Domain;
 using MediatR;
+using N8T.Core.Domain;
 using N8T.Core.Repository;
 
 namespace CoffeeShop.Kitchen.UseCases;
@@ -9,11 +10,12 @@ namespace CoffeeShop.Kitchen.UseCases;
 public class OrderInUseCase : N8T.Infrastructure.Events.DomainEventHandler<KitchenOrderIn>
 {
     private readonly IRepository<KitchenOrder> _kitchenOrderRepository;
-    
+    private readonly IPublisher _publisher;
+
     public OrderInUseCase(IRepository<KitchenOrder> kitchenOrderRepository, IPublisher publisher) 
-        : base(publisher)
     {
         _kitchenOrderRepository = kitchenOrderRepository;
+        _publisher = publisher;
     }
     
     public override async Task HandleEvent(KitchenOrderIn @event, CancellationToken cancellationToken)
@@ -28,7 +30,7 @@ public class OrderInUseCase : N8T.Infrastructure.Events.DomainEventHandler<Kitch
         
         await _kitchenOrderRepository.AddAsync(kitchenOrder, cancellationToken: cancellationToken);
 
-        await RelayAndPublishEvents(kitchenOrder, cancellationToken);
+        await kitchenOrder.RelayAndPublishEvents(_publisher, cancellationToken);
     }
 
     private static TimeSpan CalculateDelay(ItemType itemType)

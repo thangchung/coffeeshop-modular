@@ -1,6 +1,7 @@
 ﻿using CoffeeShop.Domain;
 using CoffeeShop.Domain.DomainEvents;
 using MediatR;
+using N8T.Core.Domain;
 using N8T.Core.Repository;
 
 namespace CoffeeShop.Counter.UseCases;
@@ -8,10 +9,12 @@ namespace CoffeeShop.Counter.UseCases;
 public class OrderUpUseCase : N8T.Infrastructure.Events.DomainEventHandler<OrderUp>
 {
     private readonly IRepository<Order> _orderRepository;
+    private readonly IPublisher _publisher;
 
-    public OrderUpUseCase(IRepository<Order> orderRepository, IPublisher publisher) : base(publisher)
+    public OrderUpUseCase(IRepository<Order> orderRepository, IPublisher publisher)
     {
         _orderRepository = orderRepository;
+        _publisher = publisher;
     }
 
     public override async Task HandleEvent(OrderUp @event, CancellationToken cancellationToken)
@@ -23,6 +26,6 @@ public class OrderUpUseCase : N8T.Infrastructure.Events.DomainEventHandler<Order
         var orderUpdated = order.Apply(@event);
         await _orderRepository.EditAsync(orderUpdated, cancellationToken: cancellationToken);
 
-        await RelayAndPublishEvents(order, cancellationToken);
+        await order.RelayAndPublishEvents(_publisher, cancellationToken);
     }
 }

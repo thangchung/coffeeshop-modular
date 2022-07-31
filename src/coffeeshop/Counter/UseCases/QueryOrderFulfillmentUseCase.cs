@@ -6,6 +6,15 @@ using System.Linq.Expressions;
 
 namespace CoffeeShop.Counter.UseCases;
 
+public static class OrderFulfillmentRouteMapper
+{
+    public static IEndpointRouteBuilder MapOrderFulfillmentApiRoutes(this IEndpointRouteBuilder builder)
+    {
+        builder.MapGet("/v1/api/fulfillment-orders", async (ISender sender) => await sender.Send(new OrderFulfillmentQuery()));
+        return builder;
+    }
+}
+
 public record OrderFulfillmentQuery : IRequest<IResult>
 {
 }

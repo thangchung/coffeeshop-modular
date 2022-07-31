@@ -12,15 +12,6 @@ services:
     networks:
       - coffeeshop-network
 
-  # plantuml-server:
-  #   image: "plantuml/plantuml-server:jetty"
-  #   environment:
-  #     PLANTUML_LIMIT_SIZE: 24384
-  #   ports:
-  #     - 8080:8080
-  #   networks:
-  #     - coffeeshop-network
-
   coffeeshop-app:
     image: ghcr.io/thangchung/coffeeshop-modular/coffeeshop-app:0.1.0
     build:
@@ -34,6 +25,15 @@ services:
       - postgresql
     networks:
       - coffeeshop-network
+
+  # plantuml-server:
+  #   image: "plantuml/plantuml-server:jetty"
+  #   environment:
+  #     PLANTUML_LIMIT_SIZE: 24384
+  #   ports:
+  #     - 8080:8080
+  #   networks:
+  #     - coffeeshop-network
 
 networks:
   coffeeshop-network:

@@ -1,7 +1,6 @@
 ﻿using CoffeeShop.Domain;
 using CoffeeShop.Domain.DomainEvents;
 using CoffeeShop.Infrastructure.Hubs;
-using MediatR;
 using Microsoft.AspNetCore.SignalR;
 
 namespace CoffeeShop.Counter.UseCases
@@ -10,8 +9,7 @@ namespace CoffeeShop.Counter.UseCases
     {
         private readonly IHubContext<NotificationHub, INotificationClient> _hubContext;
 
-        public OrderUpdateUseCase(IHubContext<NotificationHub, INotificationClient> hubContext, IPublisher publisher) 
-            : base(publisher)
+        public OrderUpdateUseCase(IHubContext<NotificationHub, INotificationClient> hubContext) 
         {
             _hubContext = hubContext;
         }

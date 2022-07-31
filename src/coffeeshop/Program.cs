@@ -3,10 +3,8 @@
 
 using CoffeeShop.Counter.UseCases;
 using CoffeeShop.Domain;
-using CoffeeShop.Domain.Commands;
 using CoffeeShop.Infrastructure.Data;
 using CoffeeShop.Infrastructure.Hubs;
-using MediatR;
 using N8T.Infrastructure;
 using N8T.Infrastructure.Controller;
 using N8T.Infrastructure.EfCore;
@@ -71,7 +69,8 @@ if (app.Environment.IsDevelopment())
 
 //app.UseAuthorization();
 
-app.MapGroup("/v1/api").MapOrderApi();
+app.MapOrderInApiRoutes();
+app.MapOrderFulfillmentApiRoutes();
 
 app.MapHub<NotificationHub>("/message");
 
@@ -80,17 +79,3 @@ app.MapFallback(() => Results.Redirect("/swagger"));
 await app.DoDbMigrationAsync(app.Logger);
 
 app.Run();
-
-public static class OrderApi
-{
-    public static RouteGroupBuilder MapOrderApi(this RouteGroupBuilder group)
-    {
-        group.MapPost("/orders",
-            async (PlaceOrderCommand command, ISender sender) => await sender.Send(command));
-
-        group.MapGet("/fulfillment-orders",
-            async (ISender sender) => await sender.Send(new OrderFulfillmentQuery()));
-
-        return group;
-    }
-}
