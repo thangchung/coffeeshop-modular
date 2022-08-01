@@ -12,19 +12,19 @@ services:
     networks:
       - coffeeshop-network
 
-  coffeeshop-app:
-    image: ghcr.io/thangchung/coffeeshop-modular/coffeeshop-app:0.1.0
-    build:
-      context: .
-      dockerfile: ./src/coffeeshop/Dockerfile
-    environment:
-      - ConnectionStrings__coffeeshopdb=Server=postgresql;Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd
-    ports:
-      - "5000:80"
-    depends_on:
-      - postgresql
-    networks:
-      - coffeeshop-network
+  # coffeeshop-app:
+  #   image: ghcr.io/thangchung/coffeeshop-modular/coffeeshop-app:0.1.0
+  #   build:
+  #     context: .
+  #     dockerfile: ./src/coffeeshop/Dockerfile
+  #   environment:
+  #     - ConnectionStrings__coffeeshopdb=Server=postgresql;Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd
+  #   ports:
+  #     - "5000:80"
+  #   depends_on:
+  #     - postgresql
+  #   networks:
+  #     - coffeeshop-network
 
   # plantuml-server:
   #   image: "plantuml/plantuml-server:jetty"

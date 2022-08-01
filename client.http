@@ -12,9 +12,6 @@ content-type: application/json
   "baristaItems": [
     {
       "itemType": {{$randomInt 0 5}}
-    },
-    {
-      "itemType": {{$randomInt 0 5}}
     }
   ],
   "kitchenItems": [

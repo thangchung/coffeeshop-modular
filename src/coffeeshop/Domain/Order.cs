@@ -36,8 +36,8 @@ public class Order : EntityRootBase
                 var item = Item.GetItem(baritaItem.ItemType);
                 var lineItem = new LineItem(baritaItem.ItemType, item.Type.ToString(), item.Price, ItemStatus.IN_PROGRESS, true);
 
-                order.AddDomainEvent(new BaristaOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
                 order.AddDomainEvent(new OrderUpdate(order.Id, lineItem.Id, lineItem.ItemType, OrderStatus.IN_PROGRESS));
+                order.AddDomainEvent(new BaristaOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
 
                 order.LineItems.Add(lineItem);
             }
@@ -50,8 +50,8 @@ public class Order : EntityRootBase
                 var item = Item.GetItem(kitchenItem.ItemType);
                 var lineItem = new LineItem(kitchenItem.ItemType, item.Type.ToString(), item.Price, ItemStatus.IN_PROGRESS, false);
 
-                order.AddDomainEvent(new KitchenOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
                 order.AddDomainEvent(new OrderUpdate(order.Id, lineItem.Id, lineItem.ItemType, OrderStatus.IN_PROGRESS));
+                order.AddDomainEvent(new KitchenOrderIn(order.Id, lineItem.Id, lineItem.ItemType));
 
                 order.LineItems.Add(lineItem);
             }
@@ -62,8 +62,6 @@ public class Order : EntityRootBase
 
     public Order Apply(OrderUp orderUp)
     {
-        AddDomainEvent(new OrderUpdate(Id, orderUp.ItemLineId, orderUp.ItemType, OrderStatus.FULFILLED, orderUp.MadeBy));
-
         if (LineItems.Any())
         {
             var item = LineItems.FirstOrDefault(i => i.Id == orderUp.ItemLineId);
@@ -72,11 +70,8 @@ public class Order : EntityRootBase
                 item.ItemStatus = ItemStatus.FULFILLED;
                 AddDomainEvent(new OrderUpdate(Id, item.Id, item.ItemType, OrderStatus.FULFILLED, orderUp.MadeBy));
             }
-        }
 
-        // if there are both barista and kitchen items concatenate them before checking status
-        if (LineItems.Any())
-        {
+            // if there are both barista and kitchen items is fulfilled then checking status and change to fulfilled for order
             if (LineItems.All(i => i.ItemStatus == ItemStatus.FULFILLED))
             {
                 OrderStatus = OrderStatus.FULFILLED;
